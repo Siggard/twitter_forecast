@@ -1,7 +1,6 @@
-"""
-название переменной str лучше не использовать, так как это зарезервированное имя в Python
-"""
 import tweepy
+import os
+import glob
 
 
 consumer_key = 'gijaNPO1RVGy2lKkCUxUw';
@@ -13,7 +12,15 @@ access_token_secret = 'zgBBsmYczXncka89ONP7LfyeZbdl7cYeE4cRGEh5TeA';
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 
+#specify the directory and search for text files
+os.chdir('clubs') 
+for file in glob.glob("*.txt"):
+   #read lines in file
+   file_open = open(file)
+   for line in file_open:
+      print(line)
+
 api = tweepy.API(auth)
 public_tweets = api.home_timeline()
 for tweet in public_tweets:
-    print(tweet.text)
+   print(tweet.text)
