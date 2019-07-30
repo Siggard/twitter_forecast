@@ -20,6 +20,7 @@ for file in glob.glob("*.txt"):
 	file_open = open(file)
 	for line in file_open:
 		#tweepy API work, connect to account and take feed
+		# TODO: get twitter feed by select account
 		print("String: " + line)
 
 #api = tweepy.API(auth)
