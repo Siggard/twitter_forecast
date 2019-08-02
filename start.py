@@ -29,14 +29,9 @@ for file in glob.glob("*.txt"):
     for line in file_open:
         #print('String: ' + line)
         #trim the link
-        name_long = list(line)
+        name_long = list(line)				
         for i in range(0,20):
-            del name_long[0]
-        name_short =''.join(name_long)
-        #print(name_short)
+            del name_long[0]			
+        name_short = '' . join(name_long)
+        print("\n" + name_short + " =====>>> ")
         twitts_user(name_short)
-
-#api = tweepy.API(auth)
-#public_tweets = api.home_timeline()
-#for tweet in public_tweets:
-   #print(tweet.text)
