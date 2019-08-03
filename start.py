@@ -10,9 +10,9 @@ path_to_dir = 'clubs'
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
-#in 'count_twitts' until you manually set the number of tweets
+api = tweepy.API(auth)
+
 def twitts_user(user_name, count_twitts = 1):
-   api = tweepy.API(auth)
    user = api.get_user(user_name)
    screen_name_user = user.screen_name
    twitter_user_id = user.id 
@@ -20,20 +20,15 @@ def twitts_user(user_name, count_twitts = 1):
    for tweet in public_tweets:
       print(tweet.text)
 
-#specify the directory and search for text files
 os.chdir(path_to_dir) 
 for file in glob.glob("*.txt"):
-    #read lines in file
+    name_file = file
     print("\nFile: " + file + "\n")
     file_open = open(file)
     for line in file_open:
-        print('String: ' + line)
-        #trim the link
-        name_long = list(line)
-        for i in range(0,20):
-            del name_long[0]
-        name_short =''.join(name_long)
-        print(name_short)
+        name_line = line
+        name_short = name_line.split('/')
+        name_short = name_short[-1]
         twitts_user(name_short)
 
 #api = tweepy.API(auth)
